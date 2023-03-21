@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件流階段</title>
+</head>
+<body>
+    <button id="btn">事件流</button>
+    <script type="text/javascript">
+        var btn = document.getElementById('btn');
+        //e.eventPhase 0 表示沒有發生 1 表示捕獲階段 2 目標階段 3冒泡階段
+
+        //2.目標階段
+        btn.onclick = function(e){
+            e = e || window.event;
+            //this.innerHTML =e.eventPhase + '階段';
+            console.log(e.eventPhase);
+        }
+
+        //1. 捕獲階段
+        document.body.addEventListener('click',function(e){
+            e = e || window.event;
+            console.log(e.eventPhase);
+        },true);
+
+        //3.冒泡階段
+        document.body.addEventListener('click',function(e){
+            e = e || window.event;
+            console.log(e.eventPhase);
+        },false);
+    </script>
+</body>
+</html>
